@@ -13,7 +13,7 @@ version = "0.9.1"
 dev = ["bevy/dynamic_linking"]
 
 [dependencies]
-sark_grids = { version = "0.5.9" }
+sark_grids = { git = "https://github.com/materialcontext/sark_grids_rs.git", version = "0.5.9" }
 
 [dependencies.bevy]
 version = "0.14.1"
