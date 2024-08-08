@@ -362,7 +362,7 @@ impl TiledCamera {
         let screen_pos = (screen_pos - self.vp_pos.as_vec2()).round();
 
         let view = camera_transform.compute_matrix();
-        let projection = camera.projection_matrix();
+        let projection = camera.clip_from_view();
 
         // 2D Normalized device coordinate cursor position from (-1, -1) to (1, 1)
         let cursor_ndc = (screen_pos / screen_size) * 2.0 - Vec2::from([1.0, 1.0]);
@@ -394,7 +394,7 @@ impl TiledCamera {
 
         // Build a transform to convert from world to NDC using camera data
         let world_to_ndc: Mat4 =
-            camera.projection_matrix() * camera_transform.compute_matrix().inverse();
+            camera.clip_from_view() * camera_transform.compute_matrix().inverse();
         let ndc_space_coords: Vec3 = world_to_ndc.project_point3(world_pos.as_vec2().extend(0.0));
 
         // NDC z-values outside of 0 < z < 1 are outside the camera frustum and are thus not in screen space
