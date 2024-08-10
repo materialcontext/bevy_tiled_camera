@@ -442,7 +442,13 @@ fn on_window_resized(
     // We need to dynamically resize the camera's viewports whenever the window
     // size changes. A resize_event is sent when the window is first created,
     // allowing us to reuse this system for initial setup.
-    let (primary_window_entity, primary_window) = primary_window.single();
+    let (primary_window_entity, primary_window) = match primary_window.get_single() {
+        Ok(result) => result,
+        Err(err) => {
+            eprintln!("Failed to get primary window: {}", err);
+            return
+        }
+    };
 
     for resize_event in resize_events.read() {
         if resize_event.window == primary_window_entity {

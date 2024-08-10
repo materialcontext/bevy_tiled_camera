@@ -8,7 +8,7 @@ fn main() {
             DefaultPlugins.set(ImagePlugin::default_nearest()),
         ))
         .add_systems(Startup, setup)
-        .run()
+        .run();
 }
 
 fn setup(mut commands: Commands, server: Res<AssetServer>) {
