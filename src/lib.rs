@@ -110,8 +110,8 @@ impl Plugin for TiledCameraPlugin {
 /// ```
 #[derive(Bundle)]
 pub struct TiledCameraBundle {
-    cam2d_bundle: Camera2dBundle,
-    tiled_camera: TiledCamera,
+    pub cam2d_bundle: Camera2dBundle,
+    pub tiled_camera: TiledCamera,
 }
 
 impl TiledCameraBundle {
